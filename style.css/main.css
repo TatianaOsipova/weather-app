@@ -181,6 +181,9 @@ legend {
 
 .card {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
     width: 360px;
     padding: 30px;
     background-color: #fff;
@@ -208,12 +211,38 @@ legend {
     color: #000000;
 }
 
-.card-weather {}
+.card-city span {
+    display: inline-block;
+    padding: 3px 5px;
+    background-color: #687B04;
+    border-radius: 6px;
+    color: #FFF;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1;
+    vertical-align: text-top;
+}
 
-.card-value {}
+.card-weather {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.card-img {}
+.card-value {
+    font-weight: 400;
+    font-size: 92px;
+    line-height: 1;
+    color: #000;
+}
 
-.card-description {}
+.card-value sup{
+    font-size: 50%;
+}
+
+.card-description {
+    font-size: 20px;
+    line-height: 1.2;
+}
 
 /* styling card end */
