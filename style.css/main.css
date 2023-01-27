@@ -6,6 +6,7 @@ body {
     flex-direction: column;
     align-items: center;
     row-gap: 50px;
+    font-feature-settings: 'pnum'on, 'lnum'on;
 }
 
 * {
@@ -236,7 +237,7 @@ legend {
     color: #000;
 }
 
-.card-value sup{
+.card-value sup {
     font-size: 50%;
 }
 
@@ -246,3 +247,25 @@ legend {
 }
 
 /* styling card end */
+
+/* styling footer start */
+
+.footer {
+    width: 100%;
+    padding: 8px 15px;
+    height: 32px;
+    background-color: #DDEAB9;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    color: #687B04
+}
+
+.footer a{
+    text-decoration: none;
+    color: #687B04;
+    text-align: center;
+}
+
+/* styling footer end */
