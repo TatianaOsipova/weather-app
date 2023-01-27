@@ -1,5 +1,9 @@
 @import "./reset.css";
 
+html, body{
+    min-height: 100vh;
+}
+
 body {
     font-family: 'Rubik', sans-serif;
     display: flex;
@@ -251,6 +255,7 @@ legend {
 /* styling footer start */
 
 .footer {
+    margin-top: auto;
     width: 100%;
     padding: 8px 15px;
     height: 32px;
@@ -264,8 +269,7 @@ legend {
 
 .footer a{
     text-decoration: none;
-    color: #687B04;
-    text-align: center;
+    color: #687B04;    
 }
 
 /* styling footer end */
