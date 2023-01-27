@@ -1,5 +1,9 @@
 @import "./reset.css";
 
+body{
+    font-family: 'Rubik', sans-serif;
+}
+
 * {
     padding: 0px;
     margin: 0px;
@@ -127,10 +131,30 @@ legend {
     font-size: 44px;
     line-height: 1.18;
     color: #FFFFFF;
+    margin-bottom: 20px;
 }
 
-.form {}
+.form {
+    display: flex;
+    height: 54px;
+    background: #FFFFFF;
+    border-radius: 6px;
 
-.input {}
 
-.btn {}
+
+}
+
+.input {
+    
+}
+
+.btn {    
+    width: 145px;
+    height: 54px;
+    background: #687B04;;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1;
+    color: #FFFFFF;
+}
