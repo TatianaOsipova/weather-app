@@ -8,11 +8,15 @@
     <title>Weather app</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Rubik:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css/main.css">
 </head>
 
 <body>
+
+    <!-- header start -->
 
     <header class="header">
         <h1 class="title">
@@ -24,14 +28,24 @@
         </form>
     </header>
 
+    <!-- header end -->
+
+    <!-- card start -->
+
     <div class="card">
-        New York USA
+        <h2 class="card-city">
+            New York <span>USA</span>
+        </h2>
 
-        11°c
+        <div class="card-weather">
+            <div class="card-value">11°c</div>
+            <img class="card-img" src="./img/icon.png" alt="sun and cloud">
+        </div>
 
-        Cloudy
-
+        <div class="card-description">Cloudy</div>
     </div>
+
+    <!-- card end -->
 
     <script src="js/main.js"></script>
 
