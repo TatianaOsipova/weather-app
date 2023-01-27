@@ -126,7 +126,7 @@ legend {
 }
 
 .title {
-    font-family: 'Rubik';
+    font-family: 'Playfair Display';
     font-weight: 700;
     font-size: 44px;
     line-height: 1.18;
@@ -135,9 +135,11 @@ legend {
 }
 
 .form {
+    width: 460px;
     display: flex;
+    justify-content: space-between;
     height: 54px;
-    background: #FFFFFF;
+    background: #FFF;
     border-radius: 6px;
 
 
@@ -145,16 +147,27 @@ legend {
 }
 
 .input {
+    padding: 15px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1;
+    color: #000;
+    flex-grow: 1;
     
 }
 
 .btn {    
     width: 145px;
     height: 54px;
-    background: #687B04;;
+    background-color: #687B04;
     border-radius: 6px;
     font-weight: 500;
     font-size: 20px;
     line-height: 1;
-    color: #FFFFFF;
+    color: #FFF;
+    transition: background-color 0.2s ease-in;
+}
+
+.btn:hover{
+    background-color: #a3be18bb;
 }
