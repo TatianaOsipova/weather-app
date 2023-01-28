@@ -146,7 +146,7 @@ legend {
     margin-bottom: 20px;
 }
 
-.form {
+#form {
     width: 460px;
     display: flex;
     justify-content: space-between;
@@ -167,17 +167,19 @@ legend {
 .btn {
     width: 145px;
     height: 54px;
-    background-color: #687B04;
+    background-color: #758323;
     border-radius: 6px;
     font-weight: 500;
     font-size: 20px;
     line-height: 1;
     color: #FFF;
     transition: background-color 0.2s ease-in;
+    text-transform: uppercase;
 }
 
 .btn:hover {
-    background-color: #a3be18bb;
+    background-color: #b3c365bb;
+    color: #000;
 }
 
 /* styling header end */
