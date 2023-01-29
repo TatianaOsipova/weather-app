@@ -1,3 +1,6 @@
+import conditions from './conditions.js';
+
+
 const apiKey = '3410acad2961490d9ca203750232701';
 
 //api.weatherapi.com/v1/current.json?key=3410acad2961490d9ca203750232701&q=London
@@ -48,7 +51,6 @@ async function getWeather(city) {
     console.log(data);
     return data;    
 }  
-
 
 // Listen to form submission
 form.onsubmit = async function (e) {
