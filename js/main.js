@@ -8,6 +8,19 @@ const header = document.querySelector('.header');
 const form = document.querySelector('#form');
 const input = document.querySelector('#inputCity');
 
+function removeCard() {
+    const prevCard = document.querySelector('.card');
+    if (prevCard) prevCard.remove();
+}
+
+function showError(errorMessage) {
+    // If have an error - show it
+    const html = `<div class="card">${errorMessage}</div>`;
+
+    // Display a card on the page    
+    header.insertAdjacentHTML('afterend', html);   
+}
+
 
 // Listen to form submission
 form.onsubmit = function (e) {
@@ -32,38 +45,42 @@ form.onsubmit = function (e) {
             // Check for error
             if (data.error) {
                 // Delete previous card
-                const prevCard = document.querySelector('.card');
-                if (prevCard) prevCard.remove();
+                removeCard();
 
-                // If have an error - show it
-                const html = `<div class="card">${data.error.message}</div>`;
-
-                // Display a card on the page    
-                header.insertAdjacentHTML('afterend', html);               
+                // Show a card with an error
+                showError(data.error.message);            
                 
             } else {
                 // If haven't error -show card
                 // Display receiveed data in a card
                 // Delete previous card
-                const prevCard = document.querySelector('.card');
-                if (prevCard) prevCard.remove();
-                
-                // Markup for the card
-                const html = `<div class="card">
-                                <h2 class="card-city">${data.location.name}
-                                    <span>${data.location.country}</span>
-                                </h2>
-    
-                                <div class="card-weather">
-                                    <div class="card-value">${data.current.temp_c}<sup>°c</sup></div>
-                                    <img class="card-img" src="./img/icon.png" alt="sun and cloud">
-                                </div>
-    
-                                <div class="card-description">${data.current.condition.text}</div>
-                            </div>`;
-            
-                // Display a card on the page    
-                header.insertAdjacentHTML('afterend', html);
+                removeCard();
+
+                showCard(
+                    data.location.name,
+                    data.location.country,
+                    data.current.temp_c,
+                    data.current.condition.text
+                );
+
+                function showCard() {
+                    // Markup for the card
+                    const html = `<div class="card">
+                             <h2 class="card-city">${data.location.name}
+                                 <span>${data.location.country}</span>
+                             </h2>
+
+                            <div class="card-weather">
+                                <div class="card-value">${data.current.temp_c}<sup>°c</sup></div>
+                                <img class="card-img" src="./img/icon.png" alt="sun and cloud">
+                            </div>
+
+                            <div class="card-description">${data.current.condition.text}</div>
+                        </div>`;
+
+                    // Display a card on the page    
+                    header.insertAdjacentHTML('afterend', html);                    
+                }                
             }              
         });
 }
