@@ -35,6 +35,10 @@ form.onsubmit = function (e) {
             
             // Display receiveed data in a card
 
+            // Delete previous card
+            const prevCard = document.querySelector('.card');
+            if (prevCard) prevCard.remove();
+
             // Markup for the card
             const html = `<div class="card">
                                 <h2 class="card-city">${data.location.name}
@@ -51,6 +55,9 @@ form.onsubmit = function (e) {
             
             // Display a card on the page    
             header.insertAdjacentHTML('afterend', html);
+
+
+
 
 
 
