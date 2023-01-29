@@ -21,7 +21,7 @@ function showError(errorMessage) {
     header.insertAdjacentHTML('afterend', html);   
 }
 
-function showCard(name, country, temp, condition) {
+function showCard({name, country, temp, condition}) {
     // Markup for the card
     const html = `<div class="card">
                 <h2 class="card-city">${name}
@@ -38,7 +38,16 @@ function showCard(name, country, temp, condition) {
 
     // Display a card on the page    
     header.insertAdjacentHTML('afterend', html);                    
-}   
+}
+
+async function getWeather(city) {
+    // Making a request to the server
+    const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    return data;    
+}  
 
 
 // Listen to form submission
@@ -51,16 +60,7 @@ form.onsubmit = async function (e) {
     let city = input.value.trim();
 
     // Get data from server
-    const data = await getWeather(city);
-
-    async function getWeather(city) {
-        // Making a request to the server
-        const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);
-        return data;    
-}    
+    const data = await getWeather(city);      
 
     // Check for error
     if (data.error) {
@@ -76,12 +76,14 @@ form.onsubmit = async function (e) {
         // Delete previous card
         removeCard();
 
-        showCard(
-            data.location.name,
-            data.location.country,
-            data.current.temp_c,
-            data.current.condition.text
-        );                             
+        const weatherData = {
+            name: data.location.name,
+            country: data.location.country,
+            temp: data.current.temp_c,
+            condition: data.current.condition.text,
+        };
+
+        showCard(weatherData);                               
     }      
 
     
