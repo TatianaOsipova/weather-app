@@ -1,5 +1,7 @@
 import conditions from './conditions.js';
 
+console.log(conditions);
+
 
 const apiKey = '3410acad2961490d9ca203750232701';
 
@@ -78,45 +80,24 @@ form.onsubmit = async function (e) {
         // Delete previous card
         removeCard();
 
+        console.log(data.current.condition.code);
+
+        const info = conditions.find(
+            (obj) => obj.code === data.current.condition.code
+        );
+        
+        console.log(info);
+        // console.log(info.languages[23]['day_text']);
+
         const weatherData = {
             name: data.location.name,
             country: data.location.country,
             temp: data.current.temp_c,
             condition: data.current.condition.text,
+            // condition: info.languages[23]['day_text'],
         };
 
         showCard(weatherData);                               
-    }      
-
+    }   
     
-
-    // fetch(url)
-    //     .then((response) => {
-    //         return response.json();
-    //     })
-    //     .then((data) => {
-    //         console.log(data);
-
-    //         // Check for error
-    //         if (data.error) {
-    //             // Delete previous card
-    //             removeCard();
-
-    //             // Show a card with an error
-    //             showError(data.error.message);            
-                
-    //         } else {
-    //             // If haven't error -show card
-    //             // Display receiveed data in a card
-    //             // Delete previous card
-    //             removeCard();
-
-    //             showCard(
-    //                 data.location.name,
-    //                 data.location.country,
-    //                 data.current.temp_c,
-    //                 data.current.condition.text
-    //             );                             
-    //         }              
-    //     });
 }

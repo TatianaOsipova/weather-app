@@ -191,7 +191,7 @@ legend {
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    width: 360px;
+    min-width: 360px;
     padding: 30px;
     background-color: #fff;
     border-radius: 6px;

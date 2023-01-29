@@ -1,4 +1,5 @@
-const conditions = [{
+const conditions = [
+    {
         "code": 1000,
         "day": "Sunny",
         "night": "Clear",
