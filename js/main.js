@@ -37,7 +37,7 @@ form.onsubmit = function (e) {
 
             // Markup for the card
             const html = `<div class="card">
-                                <h2 class="card-city">${data.locaton.name}
+                                <h2 class="card-city">${data.location.name}
                                     <span>${data.location.country}</span>
                                 </h2>
     
@@ -50,6 +50,7 @@ form.onsubmit = function (e) {
                             </div>`;
             
             // Display a card on the page    
+            header.insertAdjacentHTML('afterend', html);
 
 
 
