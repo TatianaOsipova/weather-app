@@ -21,9 +21,28 @@ function showError(errorMessage) {
     header.insertAdjacentHTML('afterend', html);   
 }
 
+function showCard(name, country, temp, condition) {
+    // Markup for the card
+    const html = `<div class="card">
+                <h2 class="card-city">${name}
+                    <span>${country}</span>
+                </h2>
+
+                <div class="card-weather">
+                    <div class="card-value">${temp}<sup>°c</sup></div>
+                    <img class="card-img" src="./img/icon.png" alt="sun and cloud">
+                </div>
+
+                <div class="card-description">${condition}</div>
+            </div>`;
+
+    // Display a card on the page    
+    header.insertAdjacentHTML('afterend', html);                    
+}   
+
 
 // Listen to form submission
-form.onsubmit = function (e) {
+form.onsubmit = async function (e) {
     // Cancel form submission
     e.preventDefault();
     
@@ -31,56 +50,69 @@ form.onsubmit = function (e) {
     // Take value from input, trim spaces
     let city = input.value.trim();
 
-    // Making a request to the server
+    // Get data from server
+    const data = await getWeather(city);
 
-    const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+    async function getWeather(city) {
+        // Making a request to the server
+        const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        return data;    
+}    
 
-    fetch(url)
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
+    // Check for error
+    if (data.error) {
+        // Delete previous card
+        removeCard();
 
-            // Check for error
-            if (data.error) {
-                // Delete previous card
-                removeCard();
+        // Show a card with an error
+        showError(data.error.message);            
+        
+    } else {
+        // If haven't error -show card
+        // Display receiveed data in a card
+        // Delete previous card
+        removeCard();
 
-                // Show a card with an error
-                showError(data.error.message);            
+        showCard(
+            data.location.name,
+            data.location.country,
+            data.current.temp_c,
+            data.current.condition.text
+        );                             
+    }      
+
+    
+
+    // fetch(url)
+    //     .then((response) => {
+    //         return response.json();
+    //     })
+    //     .then((data) => {
+    //         console.log(data);
+
+    //         // Check for error
+    //         if (data.error) {
+    //             // Delete previous card
+    //             removeCard();
+
+    //             // Show a card with an error
+    //             showError(data.error.message);            
                 
-            } else {
-                // If haven't error -show card
-                // Display receiveed data in a card
-                // Delete previous card
-                removeCard();
+    //         } else {
+    //             // If haven't error -show card
+    //             // Display receiveed data in a card
+    //             // Delete previous card
+    //             removeCard();
 
-                showCard(
-                    data.location.name,
-                    data.location.country,
-                    data.current.temp_c,
-                    data.current.condition.text
-                );
-
-                function showCard() {
-                    // Markup for the card
-                    const html = `<div class="card">
-                             <h2 class="card-city">${data.location.name}
-                                 <span>${data.location.country}</span>
-                             </h2>
-
-                            <div class="card-weather">
-                                <div class="card-value">${data.current.temp_c}<sup>°c</sup></div>
-                                <img class="card-img" src="./img/icon.png" alt="sun and cloud">
-                            </div>
-
-                            <div class="card-description">${data.current.condition.text}</div>
-                        </div>`;
-
-                    // Display a card on the page    
-                    header.insertAdjacentHTML('afterend', html);                    
-                }                
-            }              
-        });
+    //             showCard(
+    //                 data.location.name,
+    //                 data.location.country,
+    //                 data.current.temp_c,
+    //                 data.current.condition.text
+    //             );                             
+    //         }              
+    //     });
 }
