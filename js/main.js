@@ -28,19 +28,28 @@ form.onsubmit = function (e) {
         })
         .then((data) => {
             console.log(data);
-            console.log(data.location.name);
-            console.log(data.location.country);
-            console.log(data.current.temp_c);
-            console.log(data.current.condition.text);
-            
-            // Display receiveed data in a card
 
-            // Delete previous card
-            const prevCard = document.querySelector('.card');
-            if (prevCard) prevCard.remove();
+            // Check for error
+            if (data.error) {
+                // Delete previous card
+                const prevCard = document.querySelector('.card');
+                if (prevCard) prevCard.remove();
 
-            // Markup for the card
-            const html = `<div class="card">
+                // If have an error - show it
+                const html = `<div class="card">${data.error.message}</div>`;
+
+                // Display a card on the page    
+                header.insertAdjacentHTML('afterend', html);               
+                
+            } else {
+                // If haven't error -show card
+                // Display receiveed data in a card
+                // Delete previous card
+                const prevCard = document.querySelector('.card');
+                if (prevCard) prevCard.remove();
+                
+                // Markup for the card
+                const html = `<div class="card">
                                 <h2 class="card-city">${data.location.name}
                                     <span>${data.location.country}</span>
                                 </h2>
@@ -53,14 +62,8 @@ form.onsubmit = function (e) {
                                 <div class="card-description">${data.current.condition.text}</div>
                             </div>`;
             
-            // Display a card on the page    
-            header.insertAdjacentHTML('afterend', html);
-
-
-
-
-
-
+                // Display a card on the page    
+                header.insertAdjacentHTML('afterend', html);
+            }              
         });
-
 }
