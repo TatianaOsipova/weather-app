@@ -1,5 +1,6 @@
-import conditions from './conditions.js';
 
+
+import conditions from './conditions.js';
 console.log(conditions);
 
 
@@ -47,7 +48,7 @@ function showCard({name, country, temp, condition, imgPath}) {
 
 async function getWeather(city) {
     // Making a request to the server
-    const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`;
     const response = await fetch(url);
     const data = await response.json();
     console.log(data);
@@ -107,6 +108,5 @@ form.onsubmit = async function (e) {
         };
 
         showCard(weatherData);                               
-    }   
-    
+    }  
 }
